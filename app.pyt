@@ -32,3 +32,17 @@ class Car:
 
 my_car = Car("Toyota", "Camry", 2023, "camry_image.jpg")
 print(my_car.display_info())
+
+new_car = Car("Chevrolet", "Malibu", 2024, "malibu_image.jpg")
+
+try:
+    with open("cars.json", "r") as file:
+        cars_data = json.load(file)
+except FileNotFoundError:
+    cars_data = []
+
+cars_data.append(new_car.to_dict())
+
+with open("cars.json", "w") as file:
+    json.dump(cars_data, file, indent=4)
+
